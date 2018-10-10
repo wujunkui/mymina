@@ -1,0 +1,26 @@
+<!--miniprogram/pages/active/langTest.wxml-->
+<view class="straCon">
+  <image class="bg" src="http://sxsimg.xiaoyuanzhao.com/20/FD/20760650E01E76080F80ED929A0EAEFD.jpg"></image>
+  <view class="straBox">
+    <image class="bgTop" src='http://sxsimg.xiaoyuanzhao.com/CC/6A/CCD456AB1C5B449CD0FF2DD1883A9C6A.jpg'></image>
+    <view class="order">第{{question[qIndex].number}}题</view>
+    <view class="qesCon">
+      <view class="qBox">
+        <view class="question">
+          <view class="quesText">{{question[qIndex].q}}</view>
+          <block wx:for="{{question[qIndex].an}}" wx:key="{{index}}">
+            <view class="answer {{index == historyQ[qIndex]?'answerActive':''}}">
+              <view data-next="{{item.next}}" data-select="{{index}}" bindtap='toNext'>{{index}}、{{item.text}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class="pageBox">
+      <view wx:if="{{qIndex!==1}}" bindtap='toPre'><text decode="true">&lt;&lt;</text>上一题</view>
+      <view>{{qIndex}}/6</view>
+      <view bindtap="toIndex">去首页<text decode="true">&gt;&gt;</text></view>
+    </view>
+  </view>
+</view>
