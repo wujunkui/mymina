@@ -41,6 +41,9 @@ page {
 }
 
 /* 问题盒子 */
+.qBox {
+  width: 100%
+}
 .qesCon {
   width:632rpx;
   height:850rpx;

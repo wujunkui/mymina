@@ -1,6 +1,0 @@
-<!--miniprogram/pages/question/question.wxml-->
-<!-- <text>miniprogram/pages/question/question.wxml</text> -->
-<view class="container">
-  <view>这是题目</view>
-  <view wx:for="{{ options }}" wx:for-index="idx" wx:for-item="option" wx:key="idx">{{option.name}}</view>
-</view>

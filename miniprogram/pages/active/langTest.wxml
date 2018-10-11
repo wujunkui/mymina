@@ -7,20 +7,29 @@
     <view class="qesCon">
       <view class="qBox">
         <view class="question">
-          <view class="quesText">{{question[qIndex].q}}</view>
-          <block wx:for="{{question[qIndex].an}}" wx:key="{{index}}">
-            <view class="answer {{index == historyQ[qIndex]?'answerActive':''}}">
-              <view data-next="{{item.next}}" data-select="{{index}}" bindtap='toNext'>{{index}}、{{item.text}}</view>
-            </view>
+          <block wx:if="{{ qIndex < question.length }}">
+            <view class="quesText">{{question[qIndex].q}}</view>
+            <block wx:for="{{question[qIndex].an}}" wx:key="{{index}}">
+              <view class="answer {{index == historyQ[qIndex]?'answerActive':''}}">
+                <view data-score="{{item.score}}" data-select="{{index}}" bindtap='toNext'>{{index}}、{{item.text}}</view>
+              </view>
+            </block>
+          </block>
+          <block wx:else>
+          <view class="quesText">答完啦，点击查看得分</view>
+          <button open-type="getUserInfo" bindgetuserinfo='onGotUserInfo'>点我查看得分</button>
           </block>
         </view>
       </view>
     </view>
 
     <view class="pageBox">
-      <view wx:if="{{qIndex!==1}}" bindtap='toPre'><text decode="true">&lt;&lt;</text>上一题</view>
-      <view>{{qIndex}}/6</view>
-      <view bindtap="toIndex">去首页<text decode="true">&gt;&gt;</text></view>
+      <view wx:if="{{qIndex!==0}}" bindtap='toPre'>
+        <text decode="true">&lt;&lt;</text>上一题</view>
+      <view>{{qIndex+1}}/{{question.length}}</view>
+      <view bindtap="toIndex">去首页
+        <text decode="true">&gt;&gt;</text>
+      </view>
     </view>
   </view>
 </view>
