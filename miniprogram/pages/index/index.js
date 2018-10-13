@@ -16,7 +16,8 @@ Page({
         "preIndex": "",
         "number": "一",
         "q": "请选出以下不是动物的一个。",
-        "an": {
+        "an":"C",
+        "options": {
           "A": {
             text: "麻浪子",
             score: 0
@@ -39,7 +40,8 @@ Page({
         "preIndex": "",
         "number": "二",
         "q": "宫女告诉你，你是被一位黑衣人击倒并丢入水里，你觉得是何人指使？",
-        "an": {
+        "an":"B",
+        "options": {
           "A": {
             text: "纯妃",
             score: 0
@@ -63,10 +65,9 @@ Page({
     "answer_score":0,
     "is_finish":false
   },
-  // 去下一个题
-  toNext(e) {
+  chooseAnswer(e){
     let score = e.target.dataset.score;
-    
+
     let _m1 = "historyQ." + this.data.qIndex;
     // let _m2 = "question." + next + ".preIndex"
 
@@ -74,16 +75,24 @@ Page({
       [_m1]: e.target.dataset.select,
       // [_m2]: this.data.qIndex
     });
+    this.setData({
+      answer_score: this.data.answer_score + score
+    })
+    
+    setTimeout(this.toNext,600)
+
+  },
+  // 去下一个题
+  toNext() {
+    
     // 判断是否是答的最后一题
-    if (this.data.qIndex >= this.data.question.length - 1){
+    if (this.data.qIndex >= this.data.question.length - 1) {
       this.setData({
-        is_finish:true,
-        answer_score: this.data.answer_score + score
+        is_finish: true,
       })
-    }else{
+    } else {
       this.setData({
         qIndex: this.data.qIndex + 1,
-        answer_score: this.data.answer_score + score
       });
     }
 
@@ -179,9 +188,8 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '职场中的你，会是《延禧宫略》里的谁',
-      path: '/pages/active/langTest',
-      imageUrl: "http://sxsimg.xiaoyuanzhao.com/E4/08/E4949421DE2FE85ADEFD0EA0816A5108.jpg",
+      title: '你的邛崃话好多分？来告一哈嘛！',
+      // path: '/pages/index/index',
       success: (res) => { },
       fail: function () { }
     }

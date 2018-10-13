@@ -76,6 +76,10 @@ page {
   background-color: #8d3d30;
   color:#fed086;
 }
+.correctAnswer {
+  background-color: #1AAD19;
+  color: #ddd
+}
 .pageBox {
   width:632rpx;
   margin:0 auto;
