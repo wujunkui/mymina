@@ -3,12 +3,22 @@
 <view class="straCon">
   <image class="bg" src="../../images/bg.jpg"></image>
   <view class="straBox">
-  <view><view class='userinfo-avatar' 
-  style="background-image: url({{user_avatar}})"></view>
-  <view class='user-nick'>{{ user_nick_name }}</view></view>
-  
-  <view class="score">{{score}}</view>
-  <button open-type="share">分享给朋友</button>
-  <view class="back-link">重新答题</view>
+    <view>
+      <view class='userinfo-avatar' style="background-image: url({{user_avatar}})"></view>
+      <view class='user-nick'>{{ user_nick_name }}</view>
+    </view>
+
+    <view class="score">{{score}}</view>
+    <view class="desc-text">哦，看来你还不是标准的邛崃人哦</view>
+    <view class="btnGroup">
+      <button class="f_b" bindtap="saveImg">生成图片</button>
+      <button class="f_b" open-type='share'>分享好友</button>
+    </view>
+    <view class="pageBox">
+      <view bindtap='toIndex'>重新答题
+        <text decode="true">&gt;&gt;</text>
+      </view>
+    </view>
+    <!-- <view class="back-link">重新答题</view> -->
   </view>
 </view>

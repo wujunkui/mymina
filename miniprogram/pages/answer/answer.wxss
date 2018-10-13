@@ -35,7 +35,7 @@ page {
   margin-left: 325rpx
 }
 .user-nick {
-  color: #ddd
+  color: #fff
 }
 
 .score {
@@ -48,4 +48,39 @@ page {
   bottom: 80rpx;
   width: 100%
 
+}
+.btnGroup {
+  width:530rpx;
+  margin:0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.btnGroup button {
+  width:253rpx;
+  height:75rpx;
+  border-radius: 10rpx;
+  background-color: #45adad;
+  text-align: center;
+  line-height: 75rpx;
+  font-size:28rpx;
+  letter-spacing: 2rpx;
+  color:white;
+}
+.btnGroup button:nth-of-type(2) {
+  background-color:#416dc0;
+}
+
+.pageBox {
+  width:430rpx;
+  margin:30rpx auto 0;
+  color:white;
+  display: flex;
+  justify-content:center;
+  font-size:24rpx;
+}
+
+.desc-text {
+  height: 300rpx;
+  color: #fff;
+  padding-top:50rpx;
 }

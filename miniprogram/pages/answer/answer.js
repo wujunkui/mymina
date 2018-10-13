@@ -9,7 +9,8 @@ Page({
   data: {
     "user_avatar": app.globalData.user_avatar,
     "user_nick_name": app.globalData.user_nick_name,
-    "score":0
+    "score":0,
+    "tempPathBg":"../../images/bg.jpg"
 
   },
 
@@ -39,6 +40,9 @@ Page({
     this.setData({
       score:score
     })
+  },
+  saveImg(){
+
   },
 
   drawImg() {
@@ -224,7 +228,11 @@ Page({
       }
     })
   },
-  
+  toIndex(){
+    wx.navigateTo({
+      url: '/pages/index/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
