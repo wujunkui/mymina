@@ -1,13 +1,14 @@
 <!--miniprogram/pages/answer/answer.wxml-->
 
 <view class="straCon">
-  <image class="bg" src="http://sxsimg.xiaoyuanzhao.com/20/FD/20760650E01E76080F80ED929A0EAEFD.jpg"></image>
+  <image class="bg" src="../../images/bg.jpg"></image>
   <view class="straBox">
   <view><view class='userinfo-avatar' 
   style="background-image: url({{user_avatar}})"></view>
   <view class='user-nick'>{{ user_nick_name }}</view></view>
   
   <view class="score">{{score}}</view>
+  <button open-type="share">分享给朋友</button>
   <view class="back-link">重新答题</view>
   </view>
 </view>
