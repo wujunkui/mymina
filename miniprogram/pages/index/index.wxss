@@ -1,137 +1,91 @@
-/**index.wxss**/
-
+/* miniprogram/pages/active/langTest.wxss */
 page {
-  background: #f6f6f6;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  width:100%;
+  height:100%;
 }
 
-.userinfo, .uploader, .tunnel {
-  margin-top: 40rpx;
-  height: 140rpx;
-  width: 100%;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-left: none;
-  border-right: none;
+.straCon {
+  width:100%;
+  height:100%;
+  position:relative;
+}
+
+.bg {
+  width:100%;
+  height:100%;
+  float: left;
+}
+
+.straBox {
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.bgTop {
+  width:100%;
+  height:254rpx;
+}
+.order {
+  width:36rpx;
+  height:130rpx;
+  position:absolute;
+  top:60rpx;
+  left:358rpx;
+  text-align: center;
+  color:#fed086;
+  font-weight: bold;
+  line-height:45rpx;
+  font-size:36rpx;
+}
+
+/* 问题盒子 */
+.qBox {
+  width: 100%
+}
+.qesCon {
+  width:632rpx;
+  height:850rpx;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  transition: all 300ms ease;
+  margin:0 auto;
 }
-
-.userinfo-avatar {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-  background-size: cover;
-  background-color: white;
+.question {
+  font-size:37rpx;
+  color:white;
+  text-align: justify;
+  letter-spacing: 2rpx;
+  line-height:55rpx;
 }
-
-.userinfo-avatar:after {
-  border: none;
+.quesText {
+  margin-bottom:60rpx;
 }
-
-.userinfo-nickname {
-  font-size: 32rpx;
-  color: #007aff;
-  background-color: white;
-  background-size: cover;
+.answer {
+  width:100%;
+  height:90rpx;
+  border-radius: 90rpx;
+  background-color: #fed086;
+  text-indent: 30rpx;
+  line-height: 90rpx;
+  margin-top:28rpx;
+  color:black;
+  font-size:30rpx;
 }
-
-.userinfo-nickname::after {
-  border: none;
+.answerActive {
+  background-color: #8d3d30;
+  color:#fed086;
 }
-
-.uploader, .tunnel {
-  height: auto;
-  padding: 0 0 0 40rpx;
-  flex-direction: column;
-  align-items: flex-start;
-  box-sizing: border-box;
-}
-
-.uploader-text, .tunnel-text {
-  width: 100%;
-  line-height: 52px;
-  font-size: 34rpx;
-  color: #007aff;
-}
-
-.uploader-container {
-  width: 100%;
-  height: 400rpx;
-  padding: 20rpx 20rpx 20rpx 0;
+.pageBox {
+  width:632rpx;
+  margin:0 auto;
+  color:white;
   display: flex;
-  align-content: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+  font-size:33rpx;
+}
+.pageBox view {
+  overflow: visible;
 }
 
-.uploader-image {
-  width: 100%;
-  height: 360rpx;
-}
 
-.tunnel {
-  padding: 0 0 0 40rpx;
-}
-
-.tunnel-text {
-  position: relative;
-  color: #222;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.tunnel-text:first-child {
-  border-top: none;
-}
-
-.tunnel-switch {
-  position: absolute;
-  right: 20rpx;
-  top: -2rpx;
-}
-
-.disable {
-  color: #888;
-}
-
-.service {
-  position: fixed;
-  right: 40rpx;
-  bottom: 40rpx;
-  width: 140rpx;
-  height: 140rpx;
-  border-radius: 50%;
-  background: linear-gradient(#007aff, #0063ce);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  transition: all 300ms ease;
-}
-
-.service-button {
-  position: absolute;
-  top: 40rpx;
-}
-
-.service:active {
-  box-shadow: none;
-}
-
-.request-text {
-  padding: 20rpx 0;
-  font-size: 24rpx;
-  line-height: 36rpx;
-  word-break: break-all;
-}

@@ -1,120 +1,189 @@
-//index.js
-const app = getApp()
+// pages/index/index.js
+
+const app = getApp();
 
 Page({
-  data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: ''
-  },
 
-  onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    "myName": "",
+    "qIndex": 0,
+    "pre": 0,
+    "question": [
+      {
+        "preIndex": "",
+        "number": "一",
+        "q": "请选出以下不是动物的一个。",
+        "an": {
+          "A": {
+            text: "麻浪子",
+            score: 0
+          },
+          "B": {
+            text: "迷窝子",
+            score: 0
+          },
+          "C": {
+            text: "摆牌子",
+            score: 5
+          },
+          "D": {
+            text: "偷腔子",
+            score: 0
+          }
+        }
+      },
+      {
+        "preIndex": "",
+        "number": "二",
+        "q": "宫女告诉你，你是被一位黑衣人击倒并丢入水里，你觉得是何人指使？",
+        "an": {
+          "A": {
+            text: "纯妃",
+            score: 0
+          },
+          "B": {
+            text: "娴妃",
+            score: 0
+          },
+          "C": {
+            text: "尔晴",
+            score: 0
+          },
+          "D": {
+            text: "小嘉嫔",
+            score: 0
+          }
+        }
+      }, 
+    ],
+    "historyQ": {}, //历史题目答案,
+    "answer_score":0,
+    "is_finish":false
+  },
+  // 去下一个题
+  toNext(e) {
+    let score = e.target.dataset.score;
+    
+    let _m1 = "historyQ." + this.data.qIndex;
+    // let _m2 = "question." + next + ".preIndex"
+
+    this.setData({
+      [_m1]: e.target.dataset.select,
+      // [_m2]: this.data.qIndex
+    });
+    // 判断是否是答的最后一题
+    if (this.data.qIndex >= this.data.question.length - 1){
+      this.setData({
+        is_finish:true,
+        answer_score: this.data.answer_score + score
       })
-      return
+    }else{
+      this.setData({
+        qIndex: this.data.qIndex + 1,
+        answer_score: this.data.answer_score + score
+      });
     }
 
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
+  },
+  // 去上一个题目
+  toPre(e) {
+    this.setData({
+      qIndex: this.data.qIndex - 1
+    })
+  },
+  // 查看得分
+  onGotUserInfo: function (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+    console.log(e.detail.rawData)
+    let user_info = e.detail.userInfo;
+    if (user_info){
+      app.globalData.user_avatar = user_info.avatarUrl;
+      app.globalData.user_nick_name = user_info.nickName;
+    }
+    console.log(app.globalData.user_avatar)
+    wx.navigateTo({
+      url: `/pages/answer/answer?score=${this.data.answer_score}`,
+    })
+  },
+  // 去首页
+  toIndex(e) {
+    wx.showModal({
+      title: '提示',
+      content: '你还没有做完题目，确定去首页？',
+      confirmColor: "#eacb54",
+      success: (res) => {
+        if (res.confirm) {
+          wx.switchTab({
+            url: '/pages/index/index',
           })
         }
       }
     })
+
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+   
   },
 
-  onGetUserInfo: function(e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '职场中的你，会是《延禧宫略》里的谁',
+      path: '/pages/active/langTest',
+      imageUrl: "http://sxsimg.xiaoyuanzhao.com/E4/08/E4949421DE2FE85ADEFD0EA0816A5108.jpg",
+      success: (res) => { },
+      fail: function () { }
     }
-  },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
-  },
-
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-        
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-
+  }
 })

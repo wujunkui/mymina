@@ -10,6 +10,9 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      user_avatar:'',
+      user_nick_name:'不愿意透漏姓名的二狗子'
+    }
   }
 })

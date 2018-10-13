@@ -1,43 +1,36 @@
-<!--index.wxml-->
-<view class="container">
+<!--miniprogram/pages/index/index.wxml-->
+<view class="straCon">
+  <image class="bg" src="http://sxsimg.xiaoyuanzhao.com/20/FD/20760650E01E76080F80ED929A0EAEFD.jpg"></image>
+  <view class="straBox">
+    <image class="bgTop" src='http://sxsimg.xiaoyuanzhao.com/CC/6A/CCD456AB1C5B449CD0FF2DD1883A9C6A.jpg'></image>
+    <view class="order">第{{question[qIndex].number}}题</view>
+    <view class="qesCon">
+      <view class="qBox">
+        <view class="question">
+          <block wx:if="{{ !is_finish }}">
+            <view class="quesText">{{question[qIndex].q}}</view>
+            <block wx:for="{{question[qIndex].an}}" wx:key="{{index}}">
+              <view class="answer {{index == historyQ[qIndex]?'answerActive':''}}">
+                <view data-score="{{item.score}}" data-select="{{index}}" bindtap='toNext'>{{index}}、{{item.text}}</view>
+              </view>
+            </block>
+          </block>
+          <block wx:else>
+            <view class="quesText">答完啦，点击查看得分</view>
+            <button open-type="getUserInfo" bindgetuserinfo='onGotUserInfo'>查看得分</button>
+          </block>
+        </view>
+      </view>
+    </view>
 
-  <!-- 用户 openid -->
-  <view class="userinfo">
-    <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})"
-    ></button>
-    <view>
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+    <view wx:if="{{!is_finish}}" class="pageBox">
+      <view wx:if="{{qIndex!==0}}" bindtap='toPre'>
+        <text decode="true">&lt;&lt;</text>上一题
+      </view>
+      <view>{{qIndex+1}}/{{question.length}}</view>
+      <!-- <view bindtap="toIndex">去首页 -->
+      <!-- <text decode="true">&gt;&gt;</text> -->
+      <!-- </view> -->
     </view>
   </view>
-
-
-  <!-- 上传图片 -->
-  <view class="uploader">
-    <view class="uploader-text" bindtap="doUpload">
-      <text>上传图片</text>
-    </view>
-    <view class="uploader-container" wx:if="{{imgUrl}}">
-      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
-    </view>
-  </view>
-
-
-  <!-- 操作数据库 -->
-  <view class="uploader">
-    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
-      <text>前端操作数据库</text>
-    </navigator>
-  </view>
-
-  <!-- 新建云函数 -->
-  <view class="uploader">
-    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
-    </navigator>
-  </view>
-
 </view>
