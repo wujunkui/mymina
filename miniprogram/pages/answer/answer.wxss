@@ -84,3 +84,17 @@ page {
   color: #fff;
   padding-top:50rpx;
 }
+.drawImg {
+  width:750rpx;
+  height:0;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden; 
+}
+.canvas {
+  background-color: white;
+  width:750rpx;
+  height:1336rpx;
+  z-index:-1;
+  visibility: hidden;
+}

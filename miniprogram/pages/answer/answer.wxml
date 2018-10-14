@@ -22,3 +22,7 @@
     <!-- <view class="back-link">重新答题</view> -->
   </view>
 </view>
+<view  class="drawImg">
+ <canvas class="canvas" canvas-id="shareCanvas" wx:if="{{drawShow}}"></canvas>  
+ <image src='{{canvasTempPath}}'  mode="widthFix" width="100%"></image>    
+</view> 

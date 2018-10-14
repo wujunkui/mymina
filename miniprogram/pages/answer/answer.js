@@ -7,10 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    "user_avatar": app.globalData.user_avatar,
-    "user_nick_name": app.globalData.user_nick_name,
-    "score":0,
-    "tempPathBg":"../../images/bg.jpg"
+    user_avatar: app.globalData.user_avatar,
+    user_nick_name: app.globalData.user_nick_name,
+    score:0,
+    tempPathBg:"../../images/bg.jpg",
+    tempPath: "",      //临时头像图片路径
+    canvasTempPath: "", //临时生成图片路径
+    drawShow:true
 
   },
 
@@ -42,6 +45,11 @@ Page({
     })
   },
   saveImg(){
+    canvasUtil.drawBefore(this, app.globalData.user_avatar,"tempPath").then(res => {
+      console.log(this.data.tempPath);
+      this.drawImg()
+    })
+
 
   },
 
@@ -53,7 +61,7 @@ Page({
         let w = wid;
         let ratio = w / 750;
         let height = 1334;
-        let d = this.data.result[this.data.resultIndex];
+        let d = 'test';
         ctx.clearRect(0, 0, w, height * ratio);
         ctx.setFillStyle('#ffffff');
         ctx.fillStyle = '#ffffff';
@@ -68,6 +76,7 @@ Page({
           h: height,
           r: ratio
         });
+        console.log('bg done')
         // 绘制头像
         canvasUtil.drawImg({
           c: ctx,
@@ -78,16 +87,18 @@ Page({
           h: 300,
           r: ratio
         });
+        console.log('avatar done')
         // 绘制名字
         ctx.setTextAlign('center');
         ctx.setFontSize(32 * ratio);
-        ctx.fillText('· ' + this.data.myName + ' · 你是 :', wid * ratio, 430 * ratio);
+        ctx.fillText('· ' + this.data.user_nick_name, wid * ratio, 430 * ratio);
 
-        // 绘制角色名
-        ctx.fillText(d.name, wid * ratio, 480 * ratio);
+        // 绘制分数
+        // ctx.setFontSize(20)
+        ctx.fillText(this.data.score, wid * ratio, 480 * ratio);
 
         // 绘制短评
-        ctx.fillText(d.title, wid * ratio, 530 * ratio);
+        ctx.fillText("哦，看来你还不是标准的邛崃人", wid * ratio, 530 * ratio);
         ctx.setTextAlign('left');
         canvasUtil.drawText({
           c: ctx,
@@ -100,19 +111,19 @@ Page({
           r: ratio
         });
         let hp = 640;
-        for (let i = 0; i < d.des.length; i++) {
-          canvasUtil.drawText({
-            c: ctx,
-            t: d.des[i],
-            co: "#ffffff",
-            f: 22,
-            w: wid,
-            x: 64,
-            y: hp,
-            r: ratio
-          });
-          hp = hp + 40
-        }
+        // for (let i = 0; i < d.des.length; i++) {
+        //   canvasUtil.drawText({
+        //     c: ctx,
+        //     t: '哦，看来你还不是标准的邛崃人',
+        //     co: "#ffffff",
+        //     f: 22,
+        //     w: wid,
+        //     x: 64,
+        //     y: hp,
+        //     r: ratio
+        //   });
+        //   hp = hp + 40
+        // }
 
         // 绘制横线
         hp = hp + 20;
@@ -131,38 +142,38 @@ Page({
         });
         hp = hp + 60;
         console.log(hp);
-        for (let i = 0; i < d.evaluate.length; i++) {
-          canvasUtil.drawText({
-            c: ctx,
-            t: d.evaluate[i],
-            co: "#ffffff",
-            f: 22,
-            w: wid,
-            x: 64,
-            y: hp,
-            r: ratio
-          });
+        // for (let i = 0; i < d.evaluate.length; i++) {
+        //   canvasUtil.drawText({
+        //     c: ctx,
+        //     t: "test",
+        //     co: "#ffffff",
+        //     f: 22,
+        //     w: wid,
+        //     x: 64,
+        //     y: hp,
+        //     r: ratio
+        //   });
 
-          hp = hp + 40;
-        }
+        //   hp = hp + 40;
+        // }
 
-        for (let i = 0; i < this.data.end.length; i++) {
-          canvasUtil.drawText({
-            c: ctx,
-            t: this.data.end[i],
-            co: "#ffffff",
-            f: 20,
-            w: wid,
-            x: 64,
-            y: 1100 + ((18 + 18) * i),
-            r: ratio
-          });
-        }
+        // for (let i = 0; i < this.data.end.length; i++) {
+        //   canvasUtil.drawText({
+        //     c: ctx,
+        //     t: "",
+        //     co: "#ffffff",
+        //     f: 20,
+        //     w: wid,
+        //     x: 64,
+        //     y: 1100 + ((18 + 18) * i),
+        //     r: ratio
+        //   });
+        // }
 
         // 绘制二维码
         canvasUtil.drawImg({
           c: ctx,
-          img: "../../../images/strategyCode.jpg",
+          img: "../../images/qr.jpg",
           x: 560,
           y: 1100,
           w: 130,
