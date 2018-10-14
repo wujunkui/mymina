@@ -108,7 +108,7 @@ Page({
         // 绘制分数
         ctx.setFontSize(130)
         ctx.fillText(this.data.score, wid * ratio, 600 * ratio);
-        ctx.setTextAlign('left');
+        // ctx.setTextAlign('left');
         // canvasUtil.drawText({
         //   c: ctx,
         //   t: "你的日常：",
@@ -120,6 +120,21 @@ Page({
         //   r: ratio
         // });
         let hp = 640;
+        ctx.fillRect(64 * ratio, hp * ratio, 630 * ratio, 1);
+        ctx.setFontSize(16)
+        ctx.fillText("看来你的邛崃话还不太及格哦~", wid * ratio, 700 * ratio);
+        ctx.fillText("多听听嬢嬢些摆哈子嘛~", wid * ratio, 780 * ratio);
+        
+        // canvasUtil.drawText({
+        //   c: ctx,
+        //   t: "看来你的邛崃话还不太及格哦~多听听嬢嬢些摆哈子嘛~",
+        //   co: "#ffffff",
+        //   f: 32,
+        //   w: wid,
+        //   x: 64,
+        //   y: 650,
+        //   r: ratio
+        // });
         // for (let i = 0; i < d.des.length; i++) {
         //   canvasUtil.drawText({
         //     c: ctx,
@@ -139,16 +154,16 @@ Page({
         // ctx.fillRect(64 * ratio, hp * ratio, 632 * ratio, 1);
 
         hp = hp + 30;
-        canvasUtil.drawText({
-          c: ctx,
-          t: "评价：",
-          co: "#ffffff",
-          f: 32,
-          w: wid,
-          x: 64,
-          y: hp,
-          r: ratio
-        });
+        // canvasUtil.drawText({
+        //   c: ctx,
+        //   t: "评价：",
+        //   co: "#ffffff",
+        //   f: 32,
+        //   w: wid,
+        //   x: 64,
+        //   y: hp,
+        //   r: ratio
+        // });
         hp = hp + 60;
         console.log(hp);
         // for (let i = 0; i < d.evaluate.length; i++) {
@@ -197,6 +212,8 @@ Page({
           r:65,
           ra:ratio
         })
+
+        ctx.setTextAlign('left');
 
         //扫码测试你的职场人设
         canvasUtil.drawText({
