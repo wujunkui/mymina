@@ -2,7 +2,6 @@
   "cloud": true,
   "pages": [
     "pages/index/index",
-    "pages/demoIndex/index",
     "pages/answer/answer"
   ],
   "window": {

@@ -2,15 +2,15 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
-	"appid": "wxffdeb43047a14929",
+	"appid": "wx5eb18a26a0516fea",
 	"projectname": "jymina",
-	"libVersion": "2.2.5",
+	"libVersion": "2.3.0",
 	"compileType": "miniprogram",
 	"condition": {
 		"search": {
@@ -29,19 +29,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
 				{
 					"id": -1,
 					"name": "得分页",
 					"pathName": "pages/answer/answer",
 					"query": "score=50"
+				},
+				{
+					"id": 2,
+					"name": "saoerweima",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": "1047"
 				}
 			]
 		}

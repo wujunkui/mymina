@@ -8,64 +8,19 @@ Page({
    * 页面的初始数据
    */
   data: {
+    "lock":false,
     "myName": "",
     "qIndex": 0,
     "pre": 0,
-    "question": [
-      {
-        "preIndex": "",
-        "number": "一",
-        "q": "请选出以下不是动物的一个。",
-        "an":"C",
-        "options": {
-          "A": {
-            text: "麻浪子",
-            score: 0
-          },
-          "B": {
-            text: "迷窝子",
-            score: 0
-          },
-          "C": {
-            text: "摆牌子",
-            score: 5
-          },
-          "D": {
-            text: "偷腔子",
-            score: 0
-          }
-        }
-      },
-      {
-        "preIndex": "",
-        "number": "二",
-        "q": "宫女告诉你，你是被一位黑衣人击倒并丢入水里，你觉得是何人指使？",
-        "an":"B",
-        "options": {
-          "A": {
-            text: "纯妃",
-            score: 0
-          },
-          "B": {
-            text: "娴妃",
-            score: 0
-          },
-          "C": {
-            text: "尔晴",
-            score: 0
-          },
-          "D": {
-            text: "小嘉嫔",
-            score: 0
-          }
-        }
-      }, 
-    ],
+    "question": [],
     "historyQ": {}, //历史题目答案,
     "answer_score":0,
     "is_finish":false
   },
   chooseAnswer(e){
+    if(this.data.lock){
+      return
+    }
     let score = e.target.dataset.score;
 
     let _m1 = "historyQ." + this.data.qIndex;
@@ -95,6 +50,7 @@ Page({
         qIndex: this.data.qIndex + 1,
       });
     }
+    this.data.lock = false;
 
   },
   // 去上一个题目
@@ -138,7 +94,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+    wx.showLoading({
+      title: '问题加载中',
+      mask:true
+    })
+    wx.cloud.callFunction({
+      name: 'getQuestions'
+    }).then(res=>{
+      console.log(res)
+      let data = res.result.data;
+      this.setData({
+        question:data
+      });
+      wx.hideLoading();
+    })
   },
 
   /**
