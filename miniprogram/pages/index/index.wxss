@@ -126,6 +126,7 @@ page {
 
 .off-box {
   position: absolute;
+  width: 600rpx;
   left:75rpx;
   bottom: 40rpx
 }

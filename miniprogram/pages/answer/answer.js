@@ -45,10 +45,19 @@ Page({
     })
   },
   saveImg(){
-    canvasUtil.drawBefore(this, app.globalData.user_avatar,"tempPath").then(res => {
-      console.log(this.data.tempPath);
-      this.drawImg()
+    wx.showLoading({
+      title: '生成中',
+      mask:true
     })
+    if (!this.data.tempPath){
+      canvasUtil.drawBefore(this, app.globalData.user_avatar, "tempPath").then(res => {
+        console.log(this.data.tempPath);
+        this.drawImg()
+      })
+    }else{
+      this.drawImg()
+    }
+    
 
 
   },
@@ -99,15 +108,17 @@ Page({
         // 绘制名字
         ctx.setTextAlign('center');
         ctx.setFontSize(32 * ratio);
-        ctx.fillText(this.data.user_nick_name, wid * ratio, 280 * ratio);
+        console.log(wid)
+        console.log(wid * ratio)
+        ctx.fillText(this.data.user_nick_name, wid / 2, 280 * ratio);
 
         
 
         // 绘制短评
-        ctx.fillText("我在邛崃话考试中的得分是：", wid * ratio, 330 * ratio);
+        ctx.fillText("我在邛崃话考试中的得分是：", wid / 2, 330 * ratio);
         // 绘制分数
         ctx.setFontSize(130)
-        ctx.fillText(this.data.score, wid * ratio, 600 * ratio);
+        ctx.fillText(this.data.score, wid / 2, 600 * ratio);
         // ctx.setTextAlign('left');
         // canvasUtil.drawText({
         //   c: ctx,
@@ -122,8 +133,8 @@ Page({
         let hp = 640;
         ctx.fillRect(64 * ratio, hp * ratio, 630 * ratio, 1);
         ctx.setFontSize(16)
-        ctx.fillText("看来你的邛崃话还不太及格哦~", wid * ratio, 700 * ratio);
-        ctx.fillText("多听听嬢嬢些摆哈子嘛~", wid * ratio, 780 * ratio);
+        ctx.fillText("看来你的邛崃话还不太及格哦~", wid / 2, 700 * ratio);
+        ctx.fillText("多听听嬢嬢些摆哈子嘛~", wid / 2, 780 * ratio);
         
         // canvasUtil.drawText({
         //   c: ctx,
