@@ -135,7 +135,9 @@ Page({
         ctx.setFontSize(16)
         ctx.fillText("看来你的邛崃话还不太及格哦~", wid / 2, 700 * ratio);
         ctx.fillText("多听听嬢嬢些摆哈子嘛~", wid / 2, 780 * ratio);
-        
+        ctx.setTextAlign('left')
+        ctx.fillText('关注"椒盐视频"公众号', 70 * ratio, 1160 * ratio);
+        ctx.fillText('看 搞 笑 视 频', 70 * ratio, 1230 * ratio);
         // canvasUtil.drawText({
         //   c: ctx,
         //   t: "看来你的邛崃话还不太及格哦~多听听嬢嬢些摆哈子嘛~",
