@@ -34,9 +34,9 @@
     </view>
 
     <view wx:if="{{!is_finish}}" class="pageBox">
-      <view wx:if="{{qIndex!==0}}" bindtap='toPre'>
+      <!-- <view wx:if="{{qIndex!==0}}" bindtap='toPre'>
         <text decode="true">&lt;&lt;</text>上一题
-      </view>
+      </view> -->
       <view>{{qIndex+1}}/{{question.length}}</view>
       <!-- <view bindtap="toIndex">去首页 -->
       <!-- <text decode="true">&gt;&gt;</text> -->

@@ -29,13 +29,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "得分页",
 					"pathName": "pages/answer/answer",
-					"query": "score=50"
+					"query": "score=60"
 				},
 				{
 					"id": 2,

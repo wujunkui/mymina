@@ -115,10 +115,11 @@ Page({
         
 
         // 绘制短评
-        ctx.fillText("我在邛崃话考试中的得分是：", wid / 2, 330 * ratio);
+        ctx.fillText("在邛崃话考试中的得分是", wid / 2, 340 * ratio);
         // 绘制分数
         ctx.setFontSize(130)
-        ctx.fillText(this.data.score, wid / 2, 600 * ratio);
+        ctx.setFillStyle('#fed086')
+        ctx.fillText(this.data.score, wid / 2, 650 * ratio);
         // ctx.setTextAlign('left');
         // canvasUtil.drawText({
         //   c: ctx,
@@ -130,14 +131,16 @@ Page({
         //   y: 580,
         //   r: ratio
         // });
-        let hp = 640;
-        ctx.fillRect(64 * ratio, hp * ratio, 630 * ratio, 1);
-        ctx.setFontSize(16)
-        ctx.fillText("看来你的邛崃话还不太及格哦~", wid / 2, 700 * ratio);
-        ctx.fillText("多听听嬢嬢些摆哈子嘛~", wid / 2, 780 * ratio);
+        let hp = 740;
+        ctx.setFillStyle('#ffffff')
+        ctx.fillRect(125 * ratio, hp * ratio, 500 * ratio, 1);
+        ctx.setFontSize(32 * ratio)
+        ctx.fillText("看来你的邛崃话还不太及格哦~", wid / 2, 830 * ratio);
+        ctx.fillText("多听听嬢嬢些摆哈子嘛~", wid / 2, 890 * ratio);
         ctx.setTextAlign('left')
-        ctx.fillText('关注"椒盐视频"公众号', 70 * ratio, 1160 * ratio);
-        ctx.fillText('看 搞 笑 视 频', 70 * ratio, 1230 * ratio);
+        ctx.setFontSize(26 * ratio)
+        ctx.fillText('关注"椒盐视频"', 90 * ratio, 1160 * ratio);
+        ctx.fillText('看 搞 笑 视 频', 90 * ratio, 1210 * ratio);
         // canvasUtil.drawText({
         //   c: ctx,
         //   t: "看来你的邛崃话还不太及格哦~多听听嬢嬢些摆哈子嘛~",

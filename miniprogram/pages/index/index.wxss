@@ -50,7 +50,7 @@ page {
 .qesCon {
   width:632rpx;
   /* height:850rpx; */
-  height:747rpx;
+  height:730rpx;
   display: flex;
   align-items: center;
   margin:0 auto;
