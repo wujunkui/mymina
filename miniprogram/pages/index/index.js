@@ -1,6 +1,8 @@
 // pages/index/index.js
 
 const app = getApp();
+const db = wx.cloud.database();
+const _ = db.command;
 
 Page({
 
@@ -21,22 +23,60 @@ Page({
     if(this.data.lock){
       return
     }
-    let score = e.target.dataset.score;
+    let select = e.target.dataset.select;
+    let question = this.data.question[this.data.qIndex];
 
     let _m1 = "historyQ." + this.data.qIndex;
     // let _m2 = "question." + next + ".preIndex"
 
     this.setData({
-      [_m1]: e.target.dataset.select,
+      [_m1]: select,
       // [_m2]: this.data.qIndex
     });
-    this.setData({
-      answer_score: this.data.answer_score + score
-    })
+    if (select == question.an){
+      this.setData({
+        answer_score: this.data.answer_score + question.score
+      })
+    }
+    
     
     setTimeout(this.toNext,600)
 
   },
+  
+  getQuestions(){
+    let que_db = db.collection('questions');
+    wx.showLoading({
+      title: '问题加载中',
+      mask: true
+    })
+    que_db.count().then(res => {
+      let que_length = res.total;
+      let que_id_array = this.genRandomIdList(10,que_length);
+      console.log(que_id_array)
+      db.collection('questions').where({
+        '_id': _.in(que_id_array)
+      }).get().then(res => {
+        console.log(res);
+        // 随机排序
+        let data = res.data.sort(() => Math.random() - 0.5)
+        this.setData({
+          question: data
+        })
+        wx.hideLoading();
+        }).catch(e => {
+          console.log(`db count error:${e}`);
+
+        })
+    })
+  },
+
+  // 生成随机N道题目的id
+  genRandomIdList(n, array_length){
+    let m = n<array_length?n:array_length;
+    return Array.from(new Array(m), (val, index) => (index + 1).toString()).sort(() => Math.random() - 0.5).slice(0, n)
+  },
+
   // 去下一个题
   toNext() {
     
@@ -94,20 +134,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '问题加载中',
-      mask:true
-    })
-    wx.cloud.callFunction({
-      name: 'getQuestions'
-    }).then(res=>{
-      console.log(res)
-      let data = res.result.data;
-      this.setData({
-        question:data
-      });
-      wx.hideLoading();
-    })
+    // wx.showLoading({
+    //   title: '问题加载中',
+    //   mask:true
+    // })
+    // wx.cloud.callFunction({
+    //   name: 'getQuestions'
+    // }).then(res=>{
+    //   console.log(res)
+    //   let data = res.result.data;
+    //   this.setData({
+    //     question:data
+    //   });
+    //   wx.hideLoading();
+    // })
+    this.getQuestions()
   },
 
   /**

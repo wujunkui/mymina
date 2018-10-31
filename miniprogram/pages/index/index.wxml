@@ -11,10 +11,10 @@
       <view class="qBox">
         <view class="question">
           <block wx:if="{{ !is_finish }}">
-            <view class="quesText">{{question[qIndex].q}}</view>
+            <view class="quesText">{{qIndex+1}}.{{question[qIndex].q}}</view>
             <block wx:for="{{question[qIndex].options}}" wx:key="{{index}}">
               <view class="answer {{index == historyQ[qIndex]?'answerActive':''}} {{ historyQ[qIndex] && index == question[qIndex].an?'correctAnswer':'' }}">
-                <view data-score="{{item.score}}" data-select="{{index}}" bindtap='chooseAnswer'>{{index}}、{{item.text}}</view>
+                <view data-select="{{index}}" bindtap='chooseAnswer'>{{index}}、{{item}}</view>
               </view>
             </block>
           </block>
