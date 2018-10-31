@@ -73,7 +73,7 @@ Page({
 
   // 生成随机N道题目的id
   genRandomIdList(n, array_length){
-    let m = n<array_length?n:array_length;
+    let m = n>array_length?n:array_length;
     return Array.from(new Array(m), (val, index) => (index + 1).toString()).sort(() => Math.random() - 0.5).slice(0, n)
   },
 
