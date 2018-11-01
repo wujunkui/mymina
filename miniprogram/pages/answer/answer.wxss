@@ -85,9 +85,11 @@ page {
   padding-top:40rpx;
 }
 .desc-text .desc-main {
-  font-size: 80rpx;
+  font-size: 120rpx;
 }
-
+.desc-text .desc-add {
+  margin-top: 30rpx
+}
 
 .drawImg {
   width:750rpx;

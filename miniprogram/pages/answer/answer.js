@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user_avatar: app.globalData.user_avatar,
+    user_avatar: app.globalData.user_avatar || "../../images/dog-head.png",
     user_nick_name: app.globalData.user_nick_name,
     score:0,
     tempPathBg:"../../images/bg.jpg",
@@ -55,8 +55,12 @@ Page({
       mask:true
     })
     if (!this.data.tempPath){
-      canvasUtil.drawBefore(this, app.globalData.user_avatar, "tempPath").then(res => {
+      canvasUtil.drawBefore(this, this.data.user_avatar, "tempPath").then(res => {
         console.log(this.data.tempPath);
+        this.drawImg()
+      }).catch(e=>{
+        console.log(e)
+        this.data.tempPath = this.data.user_avatar;
         this.drawImg()
       })
     }else{
@@ -67,15 +71,15 @@ Page({
   getDescTextList(score) {
     let desc_text='';
     if (score < 20) {
-      desc_text = ['温殇']
+      desc_text = ['温 殇']
     } else if (score < 40) {
-      desc_text = ['妄自']
+      desc_text = ['妄 自']
     } else if (score < 60) {
-      desc_text = ['考惜']
+      desc_text = ['考 惜']
     } else if (score < 80) {
-      desc_text = ['稳当']
+      desc_text = ['稳 当']
     } else if (score <= 90) {
-      desc_text = ['夹吃']
+      desc_text = ['夹 吃']
     } else {
       desc_text = ['要日天','你就是邛崃最日得起壳子的大神！']
     }
@@ -154,9 +158,17 @@ Page({
         let hp = 740;
         ctx.setFillStyle('#ffffff')
         ctx.fillRect(125 * ratio, hp * ratio, 500 * ratio, 1);
-        ctx.setFontSize(32 * ratio)
-        ctx.fillText("看来你的邛崃话还不太及格哦~", wid / 2, 830 * ratio);
-        ctx.fillText("多听听嬢嬢些摆哈子嘛~", wid / 2, 890 * ratio);
+
+        ctx.setFontSize(120 * ratio)
+        
+        if(this.data.desc_text_lst.length>1){
+          ctx.fillText(this.data.desc_text_lst[0], wid / 2, 870 * ratio);
+          ctx.setFontSize(32 * ratio)
+          ctx.fillText(this.data.desc_text_lst[1], wid / 2, 960 * ratio);
+        }else{
+          ctx.fillText(this.data.desc_text_lst[0], wid / 2, 900 * ratio);
+        }
+        
         ctx.setTextAlign('left')
         ctx.setFontSize(26 * ratio)
         ctx.fillText('关注"椒盐视频"', 90 * ratio, 1160 * ratio);

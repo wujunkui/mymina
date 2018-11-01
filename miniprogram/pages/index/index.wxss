@@ -72,13 +72,20 @@ page {
 .finish-desc {
   text-align: center;
 }
-.jy-logo {
+.logo-pos {
+  display: flex;
+  width: 632rpx;
+  justify-content: center;
   position: absolute;
+  top: 565rpx
+}
+.jy-logo {
+  /* position: absolute; */
   width:150rpx;
   height: 150rpx;
   text-align: center;
-  left:300rpx;
-  bottom:470rpx;
+  /* left:300rpx; */
+  /* bottom:470rpx; */
 }
 .check-button {
   position: absolute;
@@ -88,8 +95,9 @@ page {
   background-color: #fed086;
   text-indent: 30rpx;
   line-height: 90rpx;
+  top: 770rpx;
   left: 125rpx;
-  bottom: 300rpx;
+  /* bottom: 300rpx; */
   /* color: #fff */
 }
 .answer {
@@ -128,5 +136,5 @@ page {
   position: absolute;
   width: 600rpx;
   left:75rpx;
-  bottom: 40rpx
+  top: 940rpx
 }

@@ -1,6 +1,6 @@
 // 配置文件
 
-const g_version = 'test';
+const g_version = 'release';
 
 // 云环境
 const cloud_env = g_version == 'test' ? 'jy-test-e9b329' :'release-2f776b'

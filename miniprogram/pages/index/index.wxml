@@ -25,7 +25,8 @@
               <view>"椒盐视频"</view>
               <view>关注公众号，看搞笑视频哦~</view>
             </view>
-            <image class="jy-logo" src="../../images/jy_logo.jpg"></image>
+            <view class="logo-pos"><image class="jy-logo" src="../../images/jy_logo.jpg"></image></view>
+            
             <button class="check-button" open-type="getUserInfo" bindgetuserinfo='onGotUserInfo'>查看得分</button>
             <official-account class="off-box"></official-account>
           </block>
