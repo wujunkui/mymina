@@ -35,7 +35,7 @@
 					"id": 0,
 					"name": "得分页",
 					"pathName": "pages/answer/answer",
-					"query": "score=100"
+					"query": "score=80"
 				},
 				{
 					"id": 2,
