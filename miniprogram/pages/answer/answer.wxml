@@ -9,7 +9,11 @@
     </view>
 
     <view class="score">{{score}}</view>
-    <view class="desc-text">哦，看来你还不是标准的邛崃人哦</view>
+    <view class="desc-text">
+    <view class="desc-main">{{desc_text_lst[0]}}</view>
+    <view wx:if="{{ desc_text_lst.length > 1 }}" class="desc-add">{{desc_text_lst[1]}}</view>
+    </view>
+    
     <view class="btnGroup">
       <button class="f_b" bindtap="saveImg">生成图片</button>
       <button class="f_b" open-type='share'>分享好友</button>

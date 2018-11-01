@@ -10,7 +10,7 @@
 	},
 	"appid": "wx5eb18a26a0516fea",
 	"projectname": "jymina",
-	"libVersion": "2.3.0",
+	"libVersion": "2.2.5",
 	"compileType": "miniprogram",
 	"condition": {
 		"search": {
@@ -35,7 +35,7 @@
 					"id": 0,
 					"name": "得分页",
 					"pathName": "pages/answer/answer",
-					"query": "score=60"
+					"query": "score=100"
 				},
 				{
 					"id": 2,

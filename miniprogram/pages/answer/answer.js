@@ -13,7 +13,8 @@ Page({
     tempPathBg:"../../images/bg.jpg",
     tempPath: "",      //临时头像图片路径
     canvasTempPath: "", //临时生成图片路径
-    drawShow:true
+    drawShow:true,
+    desc_text_lst:['稳当']
 
   },
 
@@ -22,6 +23,7 @@ Page({
    */
   onLoad: function (options) {
     let score = options.score;
+    let desc_text_lst = this.getDescTextList(score);
     if (app.globalData.user_avatar){
       this.setData({
         user_avatar: app.globalData.user_avatar,
@@ -39,6 +41,9 @@ Page({
         }
       })
     }
+    this.setData({
+      desc_text_lst:desc_text_lst
+    })
     
     this.setData({
       score:score
@@ -57,9 +62,24 @@ Page({
     }else{
       this.drawImg()
     }
-    
+  },
 
-
+  getDescTextList(score) {
+    let desc_text='';
+    if (score < 20) {
+      desc_text = ['温殇']
+    } else if (score < 40) {
+      desc_text = ['妄自']
+    } else if (score < 60) {
+      desc_text = ['考惜']
+    } else if (score < 80) {
+      desc_text = ['稳当']
+    } else if (score <= 90) {
+      desc_text = ['夹吃']
+    } else {
+      desc_text = ['要日天','你就是邛崃最日得起壳子的大神！']
+    }
+    return desc_text
   },
 
   drawImg() {

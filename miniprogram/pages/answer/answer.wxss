@@ -82,8 +82,13 @@ page {
 .desc-text {
   height: 300rpx;
   color: #fff;
-  padding-top:50rpx;
+  padding-top:40rpx;
 }
+.desc-text .desc-main {
+  font-size: 80rpx;
+}
+
+
 .drawImg {
   width:750rpx;
   height:0;
