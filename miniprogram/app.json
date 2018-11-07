@@ -2,13 +2,36 @@
   "cloud": true,
   "pages": [
     "pages/index/index",
-    "pages/answer/answer"
+    "pages/qionglaihua/qionglaihua",
+    "pages/answer/answer",
+    "pages/order/order",
+    "pages/pay/pay"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#f36a6a",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "椒盐视频",
+    "navigationBarBackgroundColor": "#f36a6a",
+    "navigationBarTitleText": "椒盐生活",
     "navigationBarTextStyle": "black"
-  }
+  },
+    "tabBar": {
+      "color": "#f36a6a",
+      "selectedColor": "#f36a6a",
+      "backgroundColor": "#fff",
+      "borderStyle": "black",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text": "团购",
+          "iconPath": "images/icon-home.png",
+          "selectedIconPath": "images/icon-home-fill.png"
+        },
+        {
+          "pagePath": "pages/order/order",
+          "text": "订单",
+          "iconPath": "images/icon-order.png",
+          "selectedIconPath": "images/icon-order-fill.png"
+        }
+      ]
+    }
 }
