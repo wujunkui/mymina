@@ -50,7 +50,10 @@ App({
                   wx.hideLoading();
 
                   this.globalData.ssoinfo = res.msg;
+                } else {
+                  this.globalData.isClickRepeat = false;  //恢复点击
                 }
+                
               })
             },
             fail: (res) => {
