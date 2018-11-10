@@ -33,11 +33,11 @@ App({
                   //   storeExist: this.globalData.sxs_3rd_session,
                   // })
                   this.globalData.isClickRepeat = false;  //恢复点击
-                  t.setData({
-                    loginAlert: true,
-                  })
+                  // t.setData({
+                  //   loginAlert: true,
+                  // })
                   wx.hideLoading();
-
+                  wx.setStorageSync('auth_token', res.access_token);
                   // this.globalData.ssoinfo = res.msg;
                   // this.getUserInfoApi({});
                   wx.hideLoading();

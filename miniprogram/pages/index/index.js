@@ -1,5 +1,6 @@
 // miniprogram/pages/index/index.js
 const app = getApp();
+const api = require('../../utils/api.js');
 Page({
 
   /**
@@ -14,6 +15,11 @@ Page({
     console.log(e.detail.userInfo);
     app.getUserInfo(this);
 
+  },
+  AuthInfo(){
+    api.get({url:'/userinfo'}).then(res => {
+      console.log(res)
+    })
   },
 
   /**

@@ -5,12 +5,15 @@ class Request{
 
 
   get({ url, params }) {
+    let jwt_token = wx.getStorageSync('auth_token');
+
     return new Promise((resolve, reject) => {
       wx.request({
         url: `${host}${url}`,
         data: Object.assign({}, params),
         header: {
-          'Content-Type': 'application/json;'
+          'Content-Type': 'application/json;',
+          'Authorization':`Bearer ${jwt_token}`
         },
         dataType: 'json',
         success: res => {
