@@ -2,4 +2,5 @@
 <view>
 <button class="check-button" open-type="getUserInfo" bindgetuserinfo='UserLogin'>授权登录</button>
 <button bindtap='AuthInfo'>token登陆</button>
+<button bindtap='CreateOrder'>订单支付</button>
 </view>

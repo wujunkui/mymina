@@ -21,6 +21,28 @@ Page({
       console.log(res)
     })
   },
+  CreateOrder(){
+    api.post({
+      url:'/my/orders',
+      params:{
+        iuuid:'item_dsawega'
+      }
+      }).then(res => {
+        console.log(res);
+        let data = res.data;
+        wx.requestPayment({
+          timeStamp: data.timeStamp,
+          nonceStr:data.nonceStr,
+          package:data.package,
+          signType:data.signType,
+          paySign:data.paySign,
+          success(rv){
+            console.log(rv)
+          }
+        })
+      })
+  }
+  ,
 
   /**
    * 生命周期函数--监听页面加载

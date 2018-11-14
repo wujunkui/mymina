@@ -18,7 +18,12 @@ class Request{
         dataType: 'json',
         success: res => {
           console.log(res);
-          resolve(res.data)
+          if (res.statusCode < 400){
+            resolve(res.data)
+          }else{
+            reject(res)
+          }
+          
         },
         fail:res => {
           reject(res)
@@ -27,6 +32,7 @@ class Request{
     })
   }
   post({ url, params }) {
+    let jwt_token = wx.getStorageSync('auth_token');
     return new Promise((resolve, reject) => {
       wx.request({
         url: `${host}${url}`,
@@ -35,11 +41,16 @@ class Request{
         dataType: 'json',
         header: {
           'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json;'
+          'Content-Type': 'application/json;',
+          'Authorization': `Bearer ${jwt_token}`
         },
         success: res => {
           console.log(res);
-          resolve(res.data)
+          if (res.statusCode < 400) {
+            resolve(res.data)
+          } else {
+            reject(res)
+          }
         },
         fail: res => {
           reject(res)

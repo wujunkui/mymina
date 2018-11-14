@@ -75,31 +75,22 @@ App({
 
   },
   // 调用本地接口 获取用户信息
-  getUserInfoApi({ t }) {
+  getUserInfoApi() {
     return new Promise((reslove, reject) => {
-      if (wx.getStorageSync("sxs_3rd_session")) {
-        reqapi.post({
-          url: "/mina/api/v2/getuserinfo",
-          params: {
-            sxs_rd_session: wx.getStorageSync("sxs_3rd_session"),
-          },
-          t: t,
+      
+        api.get({
+          url: "/userinfo"
         }).then(res => {
-          if (res.code === 100) {
-            this.globalData.cap = res.msg.cap;
-            this.globalData.userInfo = res.msg.userinfo;
+          if (res.code === 200) {
+            this.globalData.userInfo = res.data.userinfo;
             reslove(res.msg);
-          } else if (res.code === 101 || res.code === 103 || res.code === 104) {
-            wx.removeStorageSync("sxs_3rd_session");
-            wx.removeStorageSync("sxs_3rd_session_exp");
-            if (t) {
-              t.setData({
-                storeExist: false,
-              })
-            }
-          }
+          } 
+          
+        }).catch(res=>{
+          wx.clearStorageSync('auth_token');
+          reject(res)
         })
-      }
+      
     })
 
 
@@ -117,10 +108,17 @@ App({
       })
     }
 
+    // 获取用户登陆信息
+    this.getUserInfoApi().then().catch(
+      res => {
+        console.log('unloggined')
+      }
+    );
+
   },
   globalData:{
     isClickRepeat: false,       //重复点击参数 false当前可以点击  true 当前不可以点击
-  
+    userinfo: {},
     user_avatar: '',
     user_nick_name: '不愿意透漏姓名的二狗子',
     loginAlert: false   //是否显示登录手机号弹框
