@@ -3,7 +3,7 @@
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
 		"urlCheck": false,
-		"es6": true,
+		"es6": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -44,6 +44,12 @@
 					"pathName": "pages/qionglaihua/qionglaihua",
 					"query": "",
 					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "商品详情页",
+					"pathName": "pages/pay/pay",
+					"query": "iuuid=item_dsawega"
 				}
 			]
 		}

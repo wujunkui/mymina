@@ -38,6 +38,12 @@ Page({
           paySign:data.paySign,
           success(rv){
             console.log(rv)
+          },
+          fail(rv){
+            console.log(rv)
+          },
+          complete(rv){
+            console.log(rv)
           }
         })
       })

@@ -1,4 +1,5 @@
 // miniprogram/pages/pay/pay.js
+const api = require('../../utils/api.js')
 Page({
 
   /**
@@ -8,10 +9,37 @@ Page({
 
   },
 
+  getItemDetail(iuuid){
+    api.get({
+      url:'/item/detail',
+      params:{
+        iuuid:iuuid+'2'
+      }
+    }).then(res => {
+      let data = res.data
+      console.log(res)
+      if (res.code != 200){
+        wx.showToast({
+          title: data,
+          icon: 'none',
+          mask:true
+        })
+        // setTimeout(()=>{
+        //   wx.switchTab({
+        //     url: '/pages/index/index'
+            
+        //   })
+        // },1000)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let iuuid = options.iuuid;
+    console.log(iuuid);
+    this.getItemDetail(iuuid)
 
   },
 
