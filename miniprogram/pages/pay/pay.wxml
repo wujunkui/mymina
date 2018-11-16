@@ -1,2 +1,32 @@
 <!--miniprogram/pages/pay/pay.wxml-->
-<text>miniprogram/pages/pay/pay.wxml</text>
+<view>
+
+  <view class="item-head">
+    <image class="item-image" src='{{ image }}'></image>
+    <view class='full'>
+      <view class="inline title">{{ name }}</view>
+      <view class='inline right'>
+        <view class="view-num">{{ view_num }}浏览</view>
+        <view class="buy-num">{{ buy_num }}已售</view>
+      </view>
+    </view>
+
+
+  </view>
+  <view class="item-body">
+    <view class="address">{{ address }}</view>
+    <view class="desc">{{ desc }}</view>
+  </view>
+
+  <view class="footer">
+    <view class="posta_coll">
+      <button class="f_b go-index">首页</button>
+    </view>
+    <view class='posta_coll'>
+      <button class="f_b share">分享</button>
+    </view>
+
+    <button class="f_b buy-btn">立即购买</button>
+
+  </view>
+</view>

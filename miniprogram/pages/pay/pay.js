@@ -6,14 +6,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    uuid:'',
+    image:'',
+    name:'',
+    desc:'',
+    old_price:0,
+    price:0,
+    view_num:0,
+    buy_num:0
   },
 
   getItemDetail(iuuid){
     api.get({
       url:'/item/detail',
       params:{
-        iuuid:iuuid+'2'
+        iuuid:iuuid
       }
     }).then(res => {
       let data = res.data
@@ -30,6 +37,8 @@ Page({
             
         //   })
         // },1000)
+      }else{
+        this.setData(data)
       }
     })
   },

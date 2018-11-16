@@ -5,3 +5,18 @@
   align-items: center;
   box-sizing: border-box;
 } 
+/* 按钮样式初始化 */
+.f_b::after {
+  border:none;
+  padding:0;
+}
+.f_b {
+  border:none;
+  border-radius: 0rpx;
+  padding:0;
+  margin:0;
+  line-height: initial;
+  text-align: initial;
+  box-sizing: initial;
+  background-color: initial;
+}
