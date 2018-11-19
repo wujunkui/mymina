@@ -10,6 +10,11 @@
         <view class="buy-num">{{ buy_num }}已售</view>
       </view>
     </view>
+    <view>
+      <view class='inline price'>¥ {{ price }}</view>
+      <view class='inline old-price'>¥{{ old_price }}</view>
+    </view>
+
 
 
   </view>
@@ -23,10 +28,11 @@
       <button class="f_b go-index">首页</button>
     </view>
     <view class='posta_coll'>
-      <button class="f_b share">分享</button>
+      <button open-type='share' class="f_b share">分享</button>
     </view>
 
-    <button class="f_b buy-btn">立即购买</button>
+    <button wx:if='{{ is_login }}' class="f_b buy-btn" bindtap='CreateOrder'>立即购买</button>
+    <button wx:else class="f_b buy-btn" open-type='getUserInfo' bindgetuserinfo='userLogin'>立即购买</button>
 
   </view>
 </view>

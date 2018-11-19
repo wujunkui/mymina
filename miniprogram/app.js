@@ -23,35 +23,24 @@ App({
                 },
               }).then(res => {
                 if (res.code === 100) {
-                  // this.globalData.cap = res.msg.cap;
-                  // this.globalData['sxs_3rd_session'] = res.msg;
-                  // wx.setStorageSync('sxs_3rd_session', res.msg);
-                  // wx.setStorageSync("sxs_3rd_session_exp", (new Date().getTime() + 2505600000));  //29天过期  
-                  // this.globalData.userInfo = res.msg.msg;
-                  // this.globalData.isClickRepeat = false;  //恢复点击
-                  // t.setData({
-                  //   storeExist: this.globalData.sxs_3rd_session,
-                  // })
                   this.globalData.isClickRepeat = false;  //恢复点击
-                  // t.setData({
-                  //   loginAlert: true,
-                  // })
                   wx.hideLoading();
                   wx.setStorageSync('auth_token', res.access_token);
-                  // this.globalData.ssoinfo = res.msg;
-                  // this.getUserInfoApi({});
                   wx.hideLoading();
-                  // reslove();
-                } else if (res.code === 208) {
-                  this.globalData.isClickRepeat = false;  //恢复点击
-                  t.setData({
-                    loginAlert: true,
-                  })
-                  wx.hideLoading();
+                  reslove();
+                }
+                //  else if (res.code === 208) {
+                //   this.globalData.isClickRepeat = false;  //恢复点击
+                //   t.setData({
+                //     is_login: true,
+                //   })
+                //   wx.hideLoading();
 
-                  this.globalData.ssoinfo = res.msg;
-                } else {
+                //   this.globalData.ssoinfo = res.msg;
+                // } 
+                else {
                   this.globalData.isClickRepeat = false;  //恢复点击
+                  reject()
                 }
                 
               })
@@ -111,14 +100,17 @@ App({
     // 获取用户登陆信息
     this.getUserInfoApi().then().catch(
       res => {
-        console.log('unloggined')
+        console.log('unloggined');
+        this.getUserInfo(this).then().catch(res=>{
+          console.log('unAuth')
+        })
       }
     );
 
   },
   globalData:{
     isClickRepeat: false,       //重复点击参数 false当前可以点击  true 当前不可以点击
-    userinfo: {},
+    userinfo: null,
     user_avatar: '',
     user_nick_name: '不愿意透漏姓名的二狗子',
     loginAlert: false   //是否显示登录手机号弹框
